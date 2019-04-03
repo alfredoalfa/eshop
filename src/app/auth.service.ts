@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { AppUser } from './models/app-user';
 import { UserService } from './user.service';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/observable/of';
 
 @Injectable()
 export class AuthService {
@@ -32,6 +33,10 @@ export class AuthService {
 
   get appUser$() : Observable<AppUser> {
     return this.user$
-    .switchMap(user => this.userServices.get(user.uid))
+    .switchMap(user => { 
+      if (user) return this.userServices.get(user.uid);
+
+      return Observable.of(null);
+    });
   }
 }
