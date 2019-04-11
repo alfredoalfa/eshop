@@ -12,15 +12,17 @@ export class ProductFormComponent implements OnInit {
   categories$;
 
   constructor(
-    private router: Route,
+    //private router: Route,
     private categoryService: CategoryService, 
     private productService: ProductService) {
     this.categories$ = categoryService.getCategories();
+    console.log('lleog');
    }
+   
 
    save(product) {
      this.productService.create(product);
-     this.categories$.router.navigate(['/admin/products']);
+     //this.categories$.router.navigate(['/admin/products']);
    }
 
   ngOnInit() {
