@@ -13,7 +13,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor(private productService: ProductService) {
-     this.productService.getAll()
+    this.subscription = this.productService.getAll()
             .subscribe(products => this.filterProducts = this.products = products);
    }
 
